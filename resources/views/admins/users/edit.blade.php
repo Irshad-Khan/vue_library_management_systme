@@ -1,0 +1,121 @@
+@extends('layouts.main_layout')
+
+@section('content')
+
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Edit User</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{route('admin.users.index')}}">User</a></li>
+        
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">User Detail</h5>
+
+              <form action="{{route('admin.users.update')}}" method="POST"class="row g-3">
+                @csrf
+                <input type="hidden" name="id" value="{{$user->id}}">
+                <div class="col-6">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" value="{{$user->user_name}}" name="user_name" class="form-control" id="user_name">
+                </div>
+                
+                <div class="col-6">
+                  <label for="name" class="form-label">First Name</label>
+                  <input type="text" value="{{$user->first_name}}" name="first_name" class="form-control" id="first_name">
+                
+                </div>
+
+                <div class="col-6">
+                  <label for="name" class="form-label">Last Name</label>
+                  <input type="text" value="{{$user->last_name}}" name="last_name" class="form-control" id="last_name">
+                
+                </div>
+
+                <div class="col-6">
+                  <label for="name" class="form-label">Email</label>
+                  <input type="text"  value="{{$user->email}}"  name="email" class="form-control" id="email">
+                 
+                </div>
+
+                <div class="col-6">
+                  <label for="name" class="form-label">Password</label>
+                  <input type="password"  value="{{$user->password}}"  name="password" class="form-control" id="password">
+                  
+                </div>
+
+                
+
+                
+
+                <div class="col-6">
+                  <label for="name" class="form-label">City</label>
+                  <input type="text" value="{{$user->city}}"   name="city" class="form-control" id="city">
+                </div>
+                
+                <div class="col-6">
+                  <label for="name" class="form-label">CNIC Number</label>
+                  <input type="number" value="{{$user->cnic_number}}"   name="cnic_number" class="form-control" id="cnic_number">
+                    </div>
+                 
+
+                <div class="col-6">
+                  <label for="name" class="form-label">Phone Number</label>
+                  <input type="number" value="{{$user->phone_number}}"   name="phone_number" class="form-control" id="phone_number">
+                 
+                </div>
+
+                <div class="col-6">
+                  <label for="name" class="form-label">Profile Picture</label>
+                  <input type="file" value="{{$user->profile_picture_name}}"   name="profile_picture_name" class="form-control" id="profile_picture_name">
+                 
+                </div>
+
+                <div class="col-6">
+                  <label for="name" class="form-label">Role ID</label>
+                  <input type="text"  value="{{$user->role_id}}"  name="role_id" class="form-control" id="role_id">
+                 
+                </div>
+                <div class="col-12">
+                  <label for="status" class="form-label">Status</label>
+                  <select name="status"  value="{{$user->status}}" name="status" id="status"  class="form-control">
+                    <option value="">Please Select</option>
+                    <option value="1" {{$user->status == 1 ? 'Selected' : ''}}>Active</option>
+                    <option value="0" {{$user->status == 0 ? 'Selected' : ''}}>In-active</option>
+                  </select>
+                </div>
+
+                <div class="col-12">
+                  <label for="name" class="form-label">Address</label>
+                  <textarea cols="4" value="{{$user->address}}"   rows="5" name="address" class="form-control" id="address">
+                      </textarea>
+                    </div>
+                
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+              </form>
+
+                    
+            </div>
+         </div>
+      </div>
+
+    </section>
+
+
+            
+
+@endsection
