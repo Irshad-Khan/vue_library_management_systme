@@ -28,6 +28,9 @@
                 <div class="col-12">
                   <label for="name" class="form-label">Name</label>
                   <input type="text" name="name" class="form-control" id="name">
+                  @error('name')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
                 
                 <div class="col-12">
@@ -37,18 +40,19 @@
                     @foreach($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
-    
                   </select>
                 </div>
+                
                 <div class="col-12">
                   <label for="status" class="form-label">Status</label>
                   <select name="status" name="status" id="status"  class="form-control">
                     <option value="">Please Select</option>
                     <option value="1">Active</option>
                     <option value="0">In-active</option>
-
-    
                   </select>
+                  @error('status')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
                 
                 <div class="text-center">

@@ -28,6 +28,9 @@
                 <div class="col-6">
                   <label for="name" class="form-label">Book Name</label>
                   <input type="text" name="title" class="form-control" id="title">
+                  @error('title')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                   
                 </div>
                 
@@ -36,36 +39,53 @@
                 <div class="col-6">
                   <label for="name" class="form-label">Auther</label>
                   <input type="text" name="auther" class="form-control" id="auther">
-                
+                  @error('auther')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
 
                 <div class="col-6">
                   <label for="name" class="form-label">Isbn Number</label>
                   <input type="number" name="isbn_number" class="form-control" id="isbn_number">
-                
+                  @error('isbn_number')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
 
                 <div class="col-6">
                   <label for="name" class="form-label">Publisih Year</label>
                   <input type="date" name="publish_year" class="form-control" id="publish_year">
+                  @error('publish_year')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
 
                 <div class="col-6">
                   <label for="name" class="form-label">Type</label>
                   <input type="text" name="type" class="form-control" id="type">
-                  
+                  @error('type')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
                 
 
                 <div class="col-6">
                   <label for="name" class="form-label">Available Books</label>
                   <input type="number" name="available_books" class="form-control" id="available_books">
+                  @error('available_books')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
                 
                 <div class="col-6">
-                  <label for="name" class="form-label">Category ID</label>
-                  <input type="text" name="category_id" class="form-control" id="category_id">
-                    </div>
+                  <label for="category_id" class="form-label"> Category</label>
+                  <select name="category_id"  id="category_id"  class="form-control">
+                    <option value="">Please Select</option>
+                    @foreach($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
                 
 
                     <div class="col-6">
@@ -75,6 +95,9 @@
                     <option value="1">Active</option>
                     <option value="0">In-active</option> 
                   </select>
+                  @error('status')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
                 
                 <div class="text-center">

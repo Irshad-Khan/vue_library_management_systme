@@ -21,6 +21,7 @@ class CreateBorrowedBooksTable extends Migration
             $table->dateTime('return_date')->nullable();
             $table->decimal('fine_amount')->default(0.00);
 
+
             $table->timestamps();
         });
     }

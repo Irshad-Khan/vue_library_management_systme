@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-12">
                   <label for="parent_id" class="form-label">Parent Category</label>
-                  <input readonly value="{{$category->parent_id}}" name="parent_id" name="parent_id" id="parent_id"  class="form-control">
+                  <input readonly value="{{optional($category->parentCategory)->name ?? 'N/A'}}" name="parent_id" name="parent_id" id="parent_id"  class="form-control">
                 </div>
                 
                 <div class="col-12">

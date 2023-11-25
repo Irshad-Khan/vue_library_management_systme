@@ -19,6 +19,7 @@ class CreateFinesTable extends Migration
             $table->decimal('fine_amount')->default(0.00);
             $table->text('fine_description');
             $table->timestamps();
+
         });
     }
 

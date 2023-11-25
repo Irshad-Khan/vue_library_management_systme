@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\Category;
+
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -14,10 +16,21 @@ class BookController extends Controller
     }
 
     public function create(){
-        return view('admins.books.create');
+   $categories = Category::all();    // select * from Categories table 
+        return view('admins.books.create', compact('categories'));
     }
 
     public function store(Request $request){
+        $request->validate(rules:[
+            'title'=>['required', 'unique:books,title'],
+            'auther'=>['required', 'unique:books,auther'],
+            'isbn_number'=>['required', 'unique:books,isbn_number'],
+            'publish_year'=>['required', 'unique:books,publish_year'],
+            'type'=>['required', 'unique:books,type'],
+            'available_books'=>['required', 'unique:books,available_books'],
+            'category_id'=>['required', 'unique:books,category_id'],
+            'status'=>['required', 'unique:books,status']
+        ]);
         $book = new Book();
         $book->title = $request->title;
         $book->auther = $request->auther; 
@@ -43,12 +56,22 @@ class BookController extends Controller
     }
 
     public function edit($id){
+   $categories = Category::all();    // select * from Categories table 
         $book = Book::findOrFail($id);
-        $books = Book::all();
-        return view('admins.books.edit',compact('book', 'books'));
+        return view('admins.books.edit',compact('book', 'categories'));
      }
 
      public function update(Request $request){
+        $request->validate(rules:[
+            'title'=>['required'],
+            'auther'=>['required'],
+            'isbn_number'=>['required'],
+            'publish_year'=>['required'],
+            'type'=>['required'],
+            'available_books'=>['required'],
+            'category_id'=>['required'],
+            'status'=>['required']
+        ]);
         $book = Book::findOrFail($request->id);
         $book->title = $request->title;
         $book->auther = $request->auther;

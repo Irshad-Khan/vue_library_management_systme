@@ -64,8 +64,8 @@
                 </div>
                 
                 <div class="col-6">
-                  <label for="name" class="form-label">Category ID</label>
-                  <input type="text" value="{{$book->category_id}}" name="category_id" class="form-control" id="category_id">
+                  <label for="name" class="form-label">Category</label>
+                  <input type="text" value="{{optional($book->category)->name}}" name="category_id" class="form-control" id="category_id">
                     </div>
                 
                 <div class="col-6">

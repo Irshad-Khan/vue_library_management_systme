@@ -18,6 +18,8 @@ class CreateRolesTable extends Migration
             $table->string('name');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
+            $table->unsignedBigInteger('user_id')->default(0);
+
         });
     }
 

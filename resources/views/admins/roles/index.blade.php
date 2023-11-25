@@ -61,9 +61,9 @@
                     @endif
                     </td>
                     <td>
-                      <a href="{{route('admin.roles.show',['id'=>$role->id])}}" class="btn btn-info btn-sm">Show</a>|
-                      <a href="{{route('admin.roles.edit',['id'=>$role->id])}}" class="btn btn-primary btn-sm">Edit</a>|
-                      <a href="{{route('admin.roles.delete',['id'=>$role->id])}}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')">Delete</a>
+                      <a href="{{route('admin.roles.show',['id'=>$role->id])}}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>|
+                      <a href="{{route('admin.roles.edit',['id'=>$role->id])}}" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>|
+                      <a href="{{route('admin.roles.delete',['id'=>$role->id])}}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')"><i class="bi bi-trash"></i></a>
 
                     </td>
                   </tr>

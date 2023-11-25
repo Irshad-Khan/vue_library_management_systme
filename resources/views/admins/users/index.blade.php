@@ -49,6 +49,8 @@
                     <th scope="col">CNIC</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Image</th>
+                    <th scope="col">Role</th>
+
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -63,10 +65,12 @@
                     <td>{{$user->cnic_number}}</td>
                     <td>{{$user->phone_number}}</td>
                     <td>{{$user->profile_picture_name}}</td>
+                    <td>{{optional($user->role)->name}}</td>
+
                     <td>
-                      <a href="{{route('admin.users.show',['id'=>$user->id])}}" class="btn btn-info btn-sm">Show</a>|
-                      <a href="{{route('admin.users.edit',['id'=>$user->id])}}" class="btn btn-primary btn-sm">Edit</a>|
-                      <a href="{{route('admin.users.delete',['id'=>$user->id])}}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')">Delete</a>
+                      <a href="{{route('admin.users.show',['id'=>$user->id])}}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>|
+                      <a href="{{route('admin.users.edit',['id'=>$user->id])}}" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>|
+                      <a href="{{route('admin.users.delete',['id'=>$user->id])}}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')"><i class="bi bi-trash"></i></a>
 
                     </td>
                   </tr>

@@ -28,27 +28,43 @@
                 <div class="col-6">
                   <label for="name" class="form-label">Name</label>
                   <input type="text" name="name" class="form-control" id="name">
+                  @error('name')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
                 
                 <div class="col-6">
                   <label for="name" class="form-label">Email</label>
                   <input type="text" name="email" class="form-control" id="name">
+                  @error('email')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
                 
                 <div class="col-6">
                   <label for="name" class="form-label">Contact Number</label>
                   <input type="number" name="contact_number" class="form-control" id="name">
+                  @error('contact_number')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
 
                 <div class="col-6">
                   <label for="name" class="form-label">Subject</label>
                   <input type="text" name="subject" class="form-control" id="name">
+                  @error('subject')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
 
                 <div class="col-12">
                   <label for="name" class="form-label">Message</label>
-                  <input type="text" name="message" class="form-control" id="name">
-                </div>
+                  <textarea cols="4" rows="5" name="message" class="form-control" id="address">
+                      </textarea>
+                      @error('message')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
+                    </div>
                 
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>

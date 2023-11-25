@@ -3,7 +3,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="{{route('admin.dashboard')}}">
+        <a class="nav-link active " href="{{route('admin.dashboard')}}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -43,6 +43,21 @@
           <span>Contact Us</span>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link " href="{{route('admins.users.profile')}}">
+        <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link " href="{{route('logout')}}">
+        <i class="bi bi-box-arrow-right"></i>
+          <span>Sign Out</span>
+        </a>
+      </li>
+
 
 
 

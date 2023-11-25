@@ -19,6 +19,13 @@ class ContactUsController extends Controller
    }
 
    public function store(Request $request){
+      $request->validate(rules:[
+        'name'=>['required', 'unique:contact_us,name'],
+        'email'=>['required', 'unique:contact_us,email'], 
+        'contact_number'=>['required', 'unique:contact_us,contact_number'], 
+        'subject'=>['required', 'unique:contact_us,subject'], 
+        'message'=>['required', 'unique:contact_us,message']
+      ]);
     $contacts = new ContactUs();
     $contacts->name = $request->name; 
     $contacts->email = $request->email; 

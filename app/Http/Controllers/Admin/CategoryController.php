@@ -25,6 +25,10 @@ class CategoryController extends Controller
      }
 
      public function update(Request $request){
+        $request->validate(rules:[
+            'name'=> ['required'],
+            'status'=>['required']
+        ]);
         $category = Category::findOrFail($request->id);
         $category->name = $request->name;
         $category->parent_id = $request->parent_id ?? 0;
@@ -42,6 +46,10 @@ class CategoryController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate(rules:[
+            'name'=> ['required', 'unique:categories,name'],
+            'status'=>['required']
+        ]);
         $category = new Category();
         $category->name = $request->name;
         $category->parent_id = $request->parent_id ?? 0;

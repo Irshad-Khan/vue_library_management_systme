@@ -80,7 +80,7 @@
 
                 <div class="col-6">
                   <label for="name" class="form-label">Role ID</label>
-                  <input type="text"  value="{{$user->role_id}}"  name="role_id" class="form-control" id="role_id">
+                  <input type="text"  value="{{optional($user->role)->name}}"  name="role_id" class="form-control" id="role_id">
                  
                 </div>
 

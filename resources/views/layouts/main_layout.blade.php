@@ -28,6 +28,11 @@
 
  @include('layouts.partials.footer_script')
   
+ <script>
+  $(document).ready(function(){
+    $('table').dataTable()
+  })
+ </script>
 
 </body>
 

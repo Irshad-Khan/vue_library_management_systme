@@ -63,7 +63,7 @@
                     <td>{{$book->publish_year}}</td>
                     <td>{{$book->type}}</td>
                     <td>{{$book->available_books}}</td>
-                    <td>{{$book->category_id}}</td>
+                    <td>{{optional($book->category)->name}}</td>
                     <td>
                       @if($book->status == 1)
                     <span class="badge bg-success">Active</span>
@@ -73,9 +73,9 @@
                     </td>
 
                     <td>
-                      <a href="{{route('admin.books.show',['id'=>$book->id])}}" class="btn btn-info btn-sm">Show</a>|
-                      <a href="{{route('admin.books.edit',['id'=>$book->id])}}" class="btn btn-primary btn-sm">Edit</a>|
-                      <a href="{{route('admin.books.delete',['id'=>$book->id])}}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')">Delete</a>
+                      <a href="{{route('admin.books.show',['id'=>$book->id])}}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>|
+                      <a href="{{route('admin.books.edit',['id'=>$book->id])}}" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>|
+                      <a href="{{route('admin.books.delete',['id'=>$book->id])}}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')"><i class="bi bi-trash"></i></a>
 
                     </td>
                   </tr>

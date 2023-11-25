@@ -25,6 +25,10 @@ class RoleController extends Controller
           }
      
           public function update(Request $request){
+            $request->validate(rules:[
+                'name'=> ['required'],
+                'status'=>['required']
+             ]);
              $role = Role::findOrFail($request->id);
              $role->name = $request->name;
              $role->status = $request->status;
@@ -40,6 +44,10 @@ class RoleController extends Controller
          }
      
          public function store(Request $request){
+             $request->validate(rules:[
+                'name'=> ['required', 'unique:roles,name'],
+                'status'=>['required']
+             ]);
              $role = new Role();
              $role->name = $request->name;
              $role->status = $request->status;

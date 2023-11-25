@@ -29,10 +29,24 @@ use App\Http\Controllers\Authentication\AuthenticationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route for login
+Route::get('/login',[AuthenticationController::class, 'showLoginForm'])->name('login');
+Route::get('/register',[AuthenticationController::class, 'showRegistrationForm'])->name('authentication.register.form');
+Route::post('/register/registration',[AuthenticationController::class, 'registration'])->name('authentication.registration');
+Route::post('/post/login',[AuthenticationController::class, 'login'])->name('post.login');
+Route::get('/contact',[AuthenticationController::class, 'contact'])->name('authentication.contact');
+
+
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/logout',[AuthenticationController::class, 'logout'])->name('logout');
+
+
 
 // Routes For Category
 Route::get('/admin/dashboard',[AdminController::class,'index'])->name('admin.dashboard');
@@ -63,6 +77,11 @@ Route::get('/admin/users/delete/{id}',[UserController::class, 'delete'])->name('
 Route::get('/admin/users/show/{id}',[UserController::class, 'show'])->name('admin.users.show');
 Route::get('/admin/users/edit/{id}',[UserController::class, 'edit'])->name('admin.users.edit');
 Route::post('/admin/users/update',[UserController::class, 'update'])->name('admin.users.update');
+Route::get('/admin/users/profile',[UserController::class, 'profile'])->name('admins.users.profile');
+Route::post('/admin/users/profile/update',[UserController::class, 'profileUpdate'])->name('admins.users.profile.update');
+
+
+
 
 // Routes For Books
 Route::get('/admin/books',[BookController::class, 'index'])->name('admin.books.index');
@@ -80,13 +99,9 @@ Route::post('/admin/contact/store',[ContactUsController::class, 'store'])->name(
 Route::get('/admin/contact/delete{id}',[ContactUsController::class, 'delete'])->name('admins.contact.delete');
 Route::get('/admin/contact/show{id}',[ContactUsController::class, 'show'])->name('admins.contact.show');
 
-// Route for login
-Route::get('/login/form',[AuthenticationController::class, 'showLoginForm'])->name('authentication.login.form');
-Route::get('/register/form',[AuthenticationController::class, 'showRegistrationForm'])->name('authentication.register.form');
-Route::post('/register/registration',[AuthenticationController::class, 'registration'])->name('authentication.registration');
 
 
-
+});
 
 
 

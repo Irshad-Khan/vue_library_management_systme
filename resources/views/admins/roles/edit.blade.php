@@ -29,6 +29,9 @@
                 <div class="col-12">
                   <label for="name" class="form-label">Name</label>
                   <input value="{{$role->name}}" type="text" name="name" class="form-control" id="name">
+                  @error('name')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
               
                 <div class="col-12">
@@ -38,6 +41,10 @@
                     <option value="1" {{$role->status == 1 ? 'Selected' : ''}}>Active</option>
                     <option value="0" {{$role->status == 0 ? 'Selected' : ''}}>In-active</option>
                   </select>
+                  @error('status')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div>
                 </div>
                 
                 <div class="text-center">

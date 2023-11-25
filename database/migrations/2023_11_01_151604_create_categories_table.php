@@ -17,6 +17,9 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('parent_id')->default(0);
+            $table->unsignedBigInteger('user_id')->default(0);
+            
+
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
 

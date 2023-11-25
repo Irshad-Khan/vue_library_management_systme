@@ -23,6 +23,8 @@ class CreateBooksTable extends Migration
             $table->integer('available_books')->default(0);
             $table->unsignedBigInteger('category_id');
             $table->tinyInteger('status')->default(0);
+            $table->unsignedBigInteger('user_id')->default(0);
+
 
             $table->timestamps();
         });

@@ -53,7 +53,7 @@
                   <tr>
                     <th scope="row">{{$loop->iteration}}</th>
                     <td>{{$category->name}}</td>
-                    <td>{{$category->parent_id}}</td>
+                    <td>{{optional($category->parentCategory)->name ?? 'N/A'}}</td>
                     <td>
                       @if($category->status == 1)
                     <span class="badge bg-success">Active</span>
@@ -62,9 +62,9 @@
                     @endif
                     </td>
                     <td>
-                      <a href="{{route('admin.categories.show',['id'=>$category->id])}}" class="btn btn-info btn-sm">Show</a>|
-                      <a href="{{route('admin.categories.edit',['id'=>$category->id])}}" class="btn btn-primary btn-sm">Edit</a>|
-                      <a href="{{route('admin.categories.delete',['id'=>$category->id])}}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')">Delete</a>
+                      <a href="{{route('admin.categories.show',['id'=>$category->id])}}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>|
+                      <a href="{{route('admin.categories.edit',['id'=>$category->id])}}" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>|
+                      <a href="{{route('admin.categories.delete',['id'=>$category->id])}}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')"><i class="bi bi-trash"></i></a>
 
                     </td>
                   </tr>

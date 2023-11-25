@@ -29,6 +29,9 @@
                 <div class="col-12">
                   <label for="name" class="form-label">Name</label>
                   <input value="{{$category->name}}" type="text" name="name" class="form-control" id="name">
+                  @error('name')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
                 <div class="col-12">
                   <label for="parent_id" class="form-label">Parent Category</label>
@@ -45,9 +48,10 @@
                     <option value="">Please Select</option>
                     <option value="1" {{$category->status == 1 ? 'Selected' : ''}}>Active</option>
                     <option value="0" {{$category->status == 0 ? 'Selected' : ''}}>In-active</option>
-
-    
-                  </select>
+                     </select>
+                     @error('status')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
                 
                 <div class="text-center">

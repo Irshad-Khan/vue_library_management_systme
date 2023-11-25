@@ -6,7 +6,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Contact</h1>
+      <h1>User Queries</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
@@ -30,13 +30,13 @@
             <div class="card-body">
 <div class="row">
     <div class="col-md-6">
-    <h5 class="card-title">Contact List</h5>
+    <h5 class="card-title">User Queries</h5>
 </div>
 
-<div class="col-md-6 mt-3" style="text-align: right;">
+<!-- <div class="col-md-6 mt-3" style="text-align: right;">
     <a href="{{route('admins.contact.create')}}" class="btn btn-primary">Add New</a>
     </div>
-</div>
+</div> -->
               <!-- Table with stripped rows -->
               <table class="table table-striped">
                 <thead>
@@ -62,8 +62,8 @@
 
                    
                     <td>
-                      <a href="{{route('admins.contact.show',['id'=>$contact->id])}}" class="btn btn-info btn-sm">Show</a>|
-                      <a href="{{route('admins.contact.delete',['id'=>$contact->id])}}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')">Delete</a>
+                      <a href="{{route('admins.contact.show',['id'=>$contact->id])}}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>|
+                      <a href="{{route('admins.contact.delete',['id'=>$contact->id])}}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')"><i class="bi bi-trash"></i></a>
 
                     </td>
                   </tr>

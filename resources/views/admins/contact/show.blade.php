@@ -47,8 +47,9 @@
 
                 <div class="col-12">
                   <label for="name" class="form-label">Message</label>
-                  <input type="text" value="{{$contact->message}}" name="message" class="form-control" id="name">
-                </div>
+                  <textarea cols="4" rows="5"  name="message" class="form-control" id="address"> {{$contact->message}}</textarea>
+                    
+                    </div>
                 
                
               </form><!-- Vertical Form -->
