@@ -22,7 +22,12 @@
         <div class="card">
             <div class="card-body">
               <h5 class="card-title">Book Detail</h5>
-
+              <div class="row">
+    <div class="col-12">
+        <img src="{{$book->book_picture_url}}" class="img-fluid" alt="" style="width: 100%; height: 250px; object-fit: cover;">
+    </div>
+</div>
+<hr>
               <form action="{{route('admin.books.store')}}" method="POST"class="row g-3">
                 @csrf
                 <input type="hidden" name="id" value="{{$book->id}}">

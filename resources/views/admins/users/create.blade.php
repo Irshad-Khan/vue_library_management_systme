@@ -102,10 +102,11 @@
                 </div>
 
 
+                @if(Auth::user()->role->name == 'Admin')
 
                 <div class="col-6">
                   <label for="role_id" class="form-label">Role</label>
-                  <select name="role_id" name="role_id" id="role_id"  class="form-control">
+                  <select name="role_ id" name="role_id" id="role_id"  class="form-control">
                     <option value="">Please Select</option>
                     @foreach($roles as $role)
                     <option value="{{$role->id}}">{{$role->name}}</option>
@@ -115,8 +116,9 @@
                   <span class="text-danger">{{$message}}</span>
                   @enderror
                 </div>
+                @endif
 
-                <div class="col-12">
+                <div class="col-6">
                   <label for="status" class="form-label">Status</label>
                   <select name="status" name="status" id="status"  class="form-control">
                     <option value="">Please Select</option>

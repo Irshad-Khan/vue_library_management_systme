@@ -17,7 +17,7 @@
     <li class="nav-item dropdown pe-3">
 
       <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-        <img src="{{asset('assets/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
+        <img src="{{Auth::user()->profile_picture_url}}" alt="Profile" class="img-fluid rounded-circle" style="width: 30px; height: 50px;">
         <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->user_name}}</span>
       </a><!-- End Profile Iamge Icon -->
 

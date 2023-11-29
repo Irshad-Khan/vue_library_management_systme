@@ -23,7 +23,7 @@
             <div class="card-body">
               <h5 class="card-title">User Detail</h5>
 
-              <form action="{{route('admin.books.update')}}" method="POST"class="row g-3">
+              <form action="{{route('admin.books.update')}}" method="POST"class="row g-3" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="id" value="{{$book->id}}">
                 <div class="col-6">
@@ -87,6 +87,8 @@
                 </select>
                 </div>
 
+
+
                 <div class="col-6">
                   <label for="status" class="form-label">Status</label>
                   <select name="status"  value="{{$book->status}}" name="status" id="status"  class="form-control">
@@ -99,6 +101,13 @@
                   @enderror
                 </div>
 
+                  <div class="col-12">
+                  <label for="name" class="form-label">Image</label>
+                  <input type="file" name="image" class="form-control" id="image">
+                  @error('image')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div>
              
                 
                 <div class="text-center">

@@ -132,6 +132,14 @@ class UserController extends Controller
       $user->password = Hash::make(trim($request->password));
 
       }
+      if($request->has('image')){
+         $imageName = time() . '.' . $request->image->extension();
+         $request->image->move(public_path('profile_images'), $imageName);
+         $imageUrl = asset('profile_images/' . $imageName);
+         $user->profile_picture_name = $imageName;
+         $user->profile_picture_url =$imageUrl;
+
+      }
       $user->address = $request->address;
       $user->city = $request->city;
       $user->cnic_number = $request->cnic_number;

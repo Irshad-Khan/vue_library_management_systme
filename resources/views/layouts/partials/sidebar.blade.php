@@ -9,6 +9,7 @@
         </a>
       </li>
 
+      @if(Auth::user()->role->name=="Admin")
       <li class="nav-item">
         <a class="nav-link " href="{{route('admin.categories.index')}}">
           <i class="bi bi-diagram-3-fill"></i>
@@ -44,6 +45,8 @@
         </a>
       </li>
 
+    
+
       <li class="nav-item">
         <a class="nav-link " href="{{route('admins.users.profile')}}">
         <i class="bi bi-person"></i>
@@ -58,10 +61,64 @@
         </a>
       </li>
 
+@endif
+
+@if(Auth::user()->role->name=="Librarian")
 
 
+<li class="nav-item">
+        <a class="nav-link " href="{{route('admin.users.index')}}">
+        <i class="bi bi-person"></i>
+          <span>Users</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link " href="{{route('admin.books.index')}}">
+        <i class="bi bi-book"></i>
+          <span>Books</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link " href="{{route('admins.users.profile')}}">
+        <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link " href="{{route('logout')}}">
+        <i class="bi bi-box-arrow-right"></i>
+          <span>Sign Out</span>
+        </a>
+      </li>
+      @endif
 
 
+@if(Auth::user()->role->name=="User")
+
+      <li class="nav-item">
+        <a class="nav-link " href="{{route('admin.books.index')}}">
+        <i class="bi bi-file"></i>
+          <span>Borrow Books</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link " href="{{route('admins.users.profile')}}">
+        <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link " href="{{route('logout')}}">
+        <i class="bi bi-box-arrow-right"></i>
+          <span>Sign Out</span>
+        </a>
+      </li>
+      @endif
     </ul>
 
   </aside>

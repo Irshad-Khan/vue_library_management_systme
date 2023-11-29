@@ -49,8 +49,10 @@
                     <th scope="col">CNIC</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Image</th>
-                    <th scope="col">Role</th>
 
+                @if(Auth::user()->role->name == 'Admin')
+                    <th scope="col">Role</th>
+                    @endif
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -65,8 +67,10 @@
                     <td>{{$user->cnic_number}}</td>
                     <td>{{$user->phone_number}}</td>
                     <td>{{$user->profile_picture_name}}</td>
-                    <td>{{optional($user->role)->name}}</td>
 
+                @if(Auth::user()->role->name == 'Admin')
+                    <td>{{optional($user->role)->name}}</td>
+                  @endif
                     <td>
                       <a href="{{route('admin.users.show',['id'=>$user->id])}}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>|
                       <a href="{{route('admin.users.edit',['id'=>$user->id])}}" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>|

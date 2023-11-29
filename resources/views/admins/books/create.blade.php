@@ -22,7 +22,7 @@
         <div class="card">
             <div class="card-body">
               <h5 class="card-title">Books Detail</h5>
-              <form action="{{route('admin.books.store')}}" method="POST"class="row g-3">
+              <form action="{{route('admin.books.store')}}" method="POST"class="row g-3"  enctype="multipart/form-data">
 
                 @csrf
                 <div class="col-6">
@@ -96,6 +96,15 @@
                     <option value="0">In-active</option> 
                   </select>
                   @error('status')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div>
+
+                
+                <div class="col-12">
+                  <label for="name" class="form-label">Image</label>
+                  <input type="file" name="image" class="form-control" id="image">
+                  @error('image')
                   <span class="text-danger">{{$message}}</span>
                   @enderror
                 </div>

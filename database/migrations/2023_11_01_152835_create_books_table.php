@@ -24,6 +24,8 @@ class CreateBooksTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->tinyInteger('status')->default(0);
             $table->unsignedBigInteger('user_id')->default(0);
+            $table->string('book_picture_name')->nullable();
+            $table->string('book_picture_url')->nullable();
 
 
             $table->timestamps();

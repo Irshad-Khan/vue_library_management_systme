@@ -23,15 +23,10 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="{{asset('assets/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
+              <img src="{{Auth::user()->profile_picture_url}}" alt="Profile" class="img-fluid rounded-circle" style="width: 150px; height: 140px;">
               <h2>{{Auth::user()->user_name}}</h2>
               <h3>{{optional(Auth::user()->role)->name}}</h3>
-              <div class="social-links mt-2">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-              </div>
+              
             </div>
           </div>
 
@@ -66,15 +61,15 @@
         </div>
          @endif
                   <!-- Profile Edit Form -->
-                  <form action="{{route('admins.users.profile.update')}}" method="POST">
+                  <form action="{{route('admins.users.profile.update')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
-                        <img src="{{asset('assets/img/profile-img.jpg')}}" alt="Profile">
+                        <img src="{{Auth::user()->profile_picture_url}}" alt="Profile" style="height: 150px; width: 150px;">
                         <div class="pt-2">
-                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                          <!-- <a href="#" class="btn btn-primary " title="Upload new profile image">Select Picture</a> -->
+                          <input type="file" class="form-control" name="image">
                         </div>
                       </div>
                     </div>

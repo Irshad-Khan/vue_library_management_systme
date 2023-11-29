@@ -32,11 +32,13 @@
     <div class="col-md-6">
     <h5 class="card-title">Books List</h5>
 </div>
+@if(Auth::user()->role->name != 'User')
 
 <div class="col-md-6 mt-3" style="text-align: right;">
     <a href="{{route('admin.books.create')}}" class="btn btn-primary">Add New</a>
     </div>
 </div>
+@endif
               <!-- Table with stripped rows -->
               <table class="table table-striped">
                 <thead>
@@ -73,10 +75,16 @@
                     </td>
 
                     <td>
-                      <a href="{{route('admin.books.show',['id'=>$book->id])}}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>|
-                      <a href="{{route('admin.books.edit',['id'=>$book->id])}}" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>|
-                      <a href="{{route('admin.books.delete',['id'=>$book->id])}}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')"><i class="bi bi-trash"></i></a>
+                      <a href="{{route('admin.books.show',['id'=>$book->id])}}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
+                          @if(Auth::user()->role->name == 'User')
 
+                          |<a href="{{route('admin.books.show',['id'=>$book->id])}}" class="btn btn-info btn-sm"><i class="bi bi-book"></i></a>
+                      @endif
+
+                    @if(Auth::user()->role->name != 'User')
+                      |<a href="{{route('admin.books.edit',['id'=>$book->id])}}" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>|
+                      <a href="{{route('admin.books.delete',['id'=>$book->id])}}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')"><i class="bi bi-trash"></i></a>
+                      @endif
                     </td>
                   </tr>
                   @endforeach
