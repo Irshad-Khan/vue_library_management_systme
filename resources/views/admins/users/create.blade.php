@@ -22,7 +22,7 @@
         <div class="card">
             <div class="card-body">
               <h5 class="card-title">Users Detail</h5>
-              <form action="{{route('admin.users.store')}}" method="POST"class="row g-3">
+              <form action="{{route('admin.users.store')}}" method="POST"class="row g-3" enctype="multipart/form-data">
 
                 @csrf
                 <div class="col-6">
@@ -97,7 +97,7 @@
 
                 <div class="col-6">
                   <label for="name" class="form-label">Profile Picture</label>
-                  <input type="file" name="profile_picture_name" class="form-control" id="profile_picture_name">
+                  <input type="file" name="image" class="form-control" id="image">
                  
                 </div>
 

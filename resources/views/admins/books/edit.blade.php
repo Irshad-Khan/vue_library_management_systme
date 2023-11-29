@@ -6,10 +6,10 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Edit User</h1>
+      <h1>Edit Books</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route('admin.users.index')}}">User</a></li>
+          <li class="breadcrumb-item"><a href="{{route('admin.users.index')}}">Books</a></li>
         
         </ol>
       </nav>
@@ -21,7 +21,7 @@
 
         <div class="card">
             <div class="card-body">
-              <h5 class="card-title">User Detail</h5>
+              <h5 class="card-title">Book Detail</h5>
 
               <form action="{{route('admin.books.update')}}" method="POST"class="row g-3" enctype="multipart/form-data">
                 @csrf

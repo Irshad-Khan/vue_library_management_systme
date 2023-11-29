@@ -21,10 +21,20 @@
 
         <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Book Detail</h5>
+            <div class="row">
+    <div class="col-md-6">
+    <h5 class="card-title">Books Detail</h5>
+</div>
+@if(Auth::user()->role->name == 'User')
+
+<div class="col-md-6 mt-3" style="text-align: right;">
+    <a href="{{route('admin.books.create')}}" class="btn btn-primary">Borrowed Book</a>
+    </div>
+    @endif
+  </div>
               <div class="row">
-    <div class="col-12">
-        <img src="{{$book->book_picture_url}}" class="img-fluid" alt="" style="width: 100%; height: 250px; object-fit: cover;">
+    <div class="col-6">
+        <img src="{{$book->book_picture_url}}" class="img-fluid" alt="" style="width: 100%; height: 250px; object-fit: contain;">
     </div>
 </div>
 <hr>

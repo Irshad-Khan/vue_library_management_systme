@@ -42,13 +42,14 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Image</th>
+
                     <th scope="col">Name</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">CNIC</th>
                     <th scope="col">Phone</th>
-                    <th scope="col">Image</th>
 
                 @if(Auth::user()->role->name == 'Admin')
                     <th scope="col">Role</th>
@@ -60,13 +61,16 @@
                   @foreach($users as $user)
                   <tr>
                     <th scope="row">{{$loop->iteration}}</th>
+                    <td>
+                      <img src="{{$user->profile_picture_url}}" width="32" alt="">
+                    </td>
                     <td>{{$user->user_name}}</td>
                     <td>{{$user->first_name}}</td>
                     <td>{{$user->last_name}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->cnic_number}}</td>
                     <td>{{$user->phone_number}}</td>
-                    <td>{{$user->profile_picture_name}}</td>
+                    
 
                 @if(Auth::user()->role->name == 'Admin')
                     <td>{{optional($user->role)->name}}</td>

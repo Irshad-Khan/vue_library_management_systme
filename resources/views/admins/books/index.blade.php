@@ -37,8 +37,8 @@
 <div class="col-md-6 mt-3" style="text-align: right;">
     <a href="{{route('admin.books.create')}}" class="btn btn-primary">Add New</a>
     </div>
-</div>
-@endif
+    @endif
+  </div>
               <!-- Table with stripped rows -->
               <table class="table table-striped">
                 <thead>

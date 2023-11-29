@@ -26,6 +26,7 @@ class UserController extends Controller
          }
 
          public function store(Request $request){
+            if(Auth::user()->role->name == 'Admin'){
             $request->validate(rules:[
                'user_name'=>['required'],
                'first_name'=>['required'],
@@ -40,6 +41,21 @@ class UserController extends Controller
                'status'=>['required']
 
             ]);
+         }
+            else{
+               $request->validate([
+                  'user_name' => ['required'],
+                  'first_name' => ['required'],
+                  'last_name' => ['required'],
+                  'email' => ['required', 'unique:users,email'],
+                  'password' => ['required'],
+                  'address' => ['required'],
+                  'city' => ['required'],
+                  'cnic_number' => ['required', 'unique:users,cnic_number'],
+                  'phone_number' => ['required'],
+                  'status' => ['required']
+               ]);
+            }
             $user = new User();
             $user->user_name = $request->user_name;
             $user->first_name = $request->first_name;
@@ -50,8 +66,16 @@ class UserController extends Controller
             $user->city = $request->city;
             $user->cnic_number = $request->cnic_number;
             $user->phone_number = $request->phone_number;
-            $user->role_id = $request->role_id;
+            $user->role_id = $request->role_id ?? 3;
             $user->status = $request->status;
+            if($request->has('image')){
+               $imageName = time() . '.' . $request->image->extension();
+               $request->image->move(public_path('profile_images'), $imageName);
+               $imageUrl = asset('profile_images/' . $imageName);
+               $user->profile_picture_name = $imageName;
+               $user->profile_picture_url =$imageUrl;
+      
+            }
             $user->save();
             return redirect()->route('admin.users.index')->with('success', 'User Added Successfully!');
           }
@@ -76,18 +100,35 @@ class UserController extends Controller
      }
 
      public function update(Request $request){
-      $request->validate(rules:[
-         'user_name'=>['required'],
-         'first_name'=>['required'],
-         'last_name'=>['required'],
-         'email'=>['required'],
-         'address'=>['required'],
-         'city'=>['required'],
-         'cnic_number'=>['required'],
-         'role_id'=>['required', ],
-         'phone_number'=>['required',],
-         'status'=>['required']
-      ]);
+      if(Auth::user()->role->name == 'Admin'){
+            $request->validate(rules:[               
+            'user_name'=>['required'],
+            'first_name'=>['required'],
+            'last_name'=>['required'],
+            'email'=>['required'],
+            'address'=>['required'],
+            'city'=>['required'],
+            'cnic_number'=>['required'],
+            'role_id'=>['required'],
+            'phone_number'=>['required'],
+            'status'=>['required']
+
+         ]);
+      }
+         else{
+            $request->validate([
+               'user_name' => ['required'],
+               'first_name' => ['required'],
+               'last_name' => ['required'],
+               'email' => ['required'],
+               'address' => ['required'],
+               'city' => ['required'],
+               'cnic_number' => ['required'],
+               'phone_number' => ['required'],
+               'status' => ['required']
+            ]);
+         }
+      
         $user = User::findOrFail($request->id);
         $user->user_name = $request->user_name;
         $user->first_name = $request->first_name;
@@ -101,9 +142,20 @@ class UserController extends Controller
         $user->city = $request->city;
         $user->cnic_number = $request->cnic_number;
         $user->phone_number = $request->phone_number;
-        $user->role_id = $request->role_id;
+        if(Auth::user()->role->name == 'Admin'){
+
+           $user->role_id = $request->role_id;
+        }
         $user->status = $request->status;
-        $user->save();
+        if($request->has('image')){
+         $imageName = time() . '.' . $request->image->extension();
+         $request->image->move(public_path('profile_images'), $imageName);
+         $imageUrl = asset('profile_images/' . $imageName);
+         $user->profile_picture_name = $imageName;
+         $user->profile_picture_url =$imageUrl;
+
+      }
+        $user->update();
         return redirect()->route('admin.users.index')->with('success', 'User Updated Successfully!');
     
     }

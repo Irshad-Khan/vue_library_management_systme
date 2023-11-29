@@ -17,7 +17,7 @@ class BookController extends Controller
     }
 
     public function create(){
-        if(Auth::user()->role->name!="Admin" || Auth::user()->role->name!="Librarian"){
+        if(Auth::user()->role->name =="User"){
             abort(403, "You have no permission to access this module");
         }
    $categories = Category::all();    // select * from Categories table 
@@ -25,18 +25,18 @@ class BookController extends Controller
     }
 
     public function store(Request $request){
-        if(Auth::user()->role->name!="Admin" || Auth::user()->role->name!="Librarian"){
+        if(Auth::user()->role->name =="User"){
             abort(403, "You have no permission to access this module");
         }
         $request->validate(rules:[
             'title'=>['required', 'unique:books,title'],
-            'auther'=>['required', 'unique:books,auther'],
-            'isbn_number'=>['required', 'unique:books,isbn_number'],
-            'publish_year'=>['required', 'unique:books,publish_year'],
-            'type'=>['required', 'unique:books,type'],
-            'available_books'=>['required', 'unique:books,available_books'],
-            'category_id'=>['required', 'unique:books,category_id'],
-            'status'=>['required', 'unique:books,status']
+            'auther'=>['required'],
+            'isbn_number'=>['required'],
+            'publish_year'=>['required'],
+            'type'=>['required'],
+            'available_books'=>['required'],
+            'category_id'=>['required'],
+            'status'=>['required']
         ]);
 
 
@@ -65,7 +65,7 @@ class BookController extends Controller
     }
 
     public function delete($id){
-        if(Auth::user()->role->name!="Admin" || Auth::user()->role->name!="Librarian"){
+        if(Auth::user()->role->name =="User"){
             abort(403, "You have no permission to access this module");
         }
     Book::find($id)->delete();
@@ -74,12 +74,13 @@ class BookController extends Controller
     }
 
     public function show($id){
+        
         $book = Book::findOrfail($id);
         return view('admins.books.show', compact('book'));
     }
 
     public function edit($id){
-        if(Auth::user()->role->name!="Admin" || Auth::user()->role->name!="Librarian"){
+        if(Auth::user()->role->name =="User"){
             abort(403, "You have no permission to access this module");
         }
    $categories = Category::all();    // select * from Categories table 
@@ -88,7 +89,7 @@ class BookController extends Controller
      }
 
      public function update(Request $request){
-        if(Auth::user()->role->name!="Admin" || Auth::user()->role->name!="Librarian"){
+        if(Auth::user()->role->name =="User"){
             abort(403, "You have no permission to access this module");
         }
         $request->validate(rules:[
@@ -119,7 +120,7 @@ class BookController extends Controller
             $book->book_picture_url =$imageUrl;
    
          }
-        $book->save();
+        $book->update();
         return redirect()->route('admin.books.index')->with('success', 'Book Updated Successfully!');
     
 }
