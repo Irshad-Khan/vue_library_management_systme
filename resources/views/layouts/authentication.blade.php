@@ -42,9 +42,9 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="{{route('home')}}" class="logo d-flex align-items-center w-auto">
-                <i class="bi bi-book" style="font-size: 28px; padding: 5px; color: blue;"></i>
+                <!-- <i class="bi bi-book" style="font-size: 28px; padding: 5px; color: blue;"></i> -->
 
-                  <span class="d-none d-lg-block">Online LMS</span>
+                  <span class="d-none d-lg-block" style="color: #44b89d; font-family: 'Mulish', sans-serif;">Online LMS</span>
                 </a>
               </div><!-- End Logo -->
 

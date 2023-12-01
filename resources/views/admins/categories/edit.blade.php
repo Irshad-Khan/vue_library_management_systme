@@ -6,10 +6,10 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Edit Category</h1>
+      <h1 style="color: #44b89d;">Edit Category</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route('admin.categories.index')}}">Categories</a></li>
+          <li class="breadcrumb-item"><a href="{{route('admin.categories.index')}}" style="color: black;">Categories</a></li>
         
         </ol>
       </nav>
@@ -21,7 +21,7 @@
 
         <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Category Detail</h5>
+              <h5 class="card-title" style="color: #44b89d;">Category Detail</h5>
 
               <form action="{{route('admin.categories.update')}}" method="POST"class="row g-3">
                 @csrf

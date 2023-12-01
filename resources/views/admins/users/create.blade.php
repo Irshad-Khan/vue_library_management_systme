@@ -6,10 +6,10 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Add User</h1>
+      <h1 style="color: #44b89d;">Add User</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route('admin.users.index')}}">Users</a></li>
+          <li class="breadcrumb-item"><a href="{{route('admin.users.index')}}" style="color: black;">Users</a></li>
         
         </ol>
       </nav>
@@ -21,7 +21,7 @@
 
         <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Users Detail</h5>
+              <h5 class="card-title"  style="color: #44b89d;">Users Detail</h5>
               <form action="{{route('admin.users.store')}}" method="POST"class="row g-3" enctype="multipart/form-data">
 
                 @csrf

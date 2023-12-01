@@ -6,10 +6,10 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Edit User</h1>
+      <h1 style="color: #44b89d;">Edit User</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route('admin.users.index')}}">User</a></li>
+          <li class="breadcrumb-item"><a href="{{route('admin.users.index')}}" style="color: black;">User</a></li>
         
         </ol>
       </nav>
@@ -21,7 +21,7 @@
 
         <div class="card">
             <div class="card-body">
-              <h5 class="card-title">User Detail</h5>
+              <h5 class="card-title" style="color: #44b89d;">User Detail</h5>
 
               <form action="{{route('admin.users.update')}}" method="POST"class="row g-3" enctype="multipart/form-data">
                 @csrf

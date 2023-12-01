@@ -6,12 +6,12 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Profile</h1>
+      <h1 style="color: #44b89d;">Profile</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-          <li class="breadcrumb-item">Users</li>
-          <li class="breadcrumb-item active">Profile</li>
+          <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}" style="color: black;">Home</a></li>
+          <li class="breadcrumb-item" style="color: black;">Users</li>
+          <li class="breadcrumb-item active" style="color: black;">Profile</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -24,8 +24,8 @@
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
               <img src="{{Auth::user()->profile_picture_url}}" alt="Profile" class="img-fluid rounded-circle" style="width: 150px; height: 140px;">
-              <h2>{{Auth::user()->user_name}}</h2>
-              <h3>{{optional(Auth::user()->role)->name}}</h3>
+              <h2 style="color: #44b89d;">{{Auth::user()->user_name}}</h2>
+              <h3 style="color: black;">{{optional(Auth::user()->role)->name}}</h3>
               
             </div>
           </div>
@@ -42,7 +42,7 @@
                 
 
                 <li class="nav-item">
-                  <button class="nav-link active"  data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                  <button class="nav-link active"  data-bs-toggle="tab" data-bs-target="#profile-edit" style="color: #44b89d;">Edit Profile</button>
                 </li>
 
 
@@ -64,7 +64,7 @@
                   <form action="{{route('admins.users.profile.update')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
-                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label" style="color: #44b89d;">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
                         <img src="{{Auth::user()->profile_picture_url}}" alt="Profile" style="height: 150px; width: 150px;">
                         <div class="pt-2">
@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">User Name</label>
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label" style="color: #44b89d;">User Name</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="user_name" type="text" class="form-control" id="user_name" value="{{Auth::user()->user_name}}">
                       </div>
@@ -85,7 +85,7 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Password</label>
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label" style="color: #44b89d;">Password</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="password" type="password" class="form-control" id="password" >
                         @error('password')
@@ -96,7 +96,7 @@
 
 
                     <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">First Name</label>
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label" style="color: #44b89d;">First Name</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="first_name" type="text" class="form-control" id="first_name" value="{{Auth::user()->first_name}}">
                         @error('first_name')
@@ -107,7 +107,7 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Last Name</label>
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label" style="color: #44b89d;">Last Name</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="last_name" type="text" class="form-control" id="last_name" value="{{Auth::user()->last_name}}">
                         @error('last_name')
@@ -121,7 +121,7 @@
             
 
                     <div class="row mb-3">
-                      <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+                      <label for="Address" class="col-md-4 col-lg-3 col-form-label" style="color: #44b89d;">Address</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="address" type="text" class="form-control" id="Address" value="{{Auth::user()->address}}">
                         @error('address')
@@ -132,7 +132,7 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label" style="color: #44b89d;">Phone</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="phone_number" type="text" class="form-control" id="phone_number" value="{{Auth::user()->phone_number}}">
                       
@@ -144,7 +144,7 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                      <label for="Email" class="col-md-4 col-lg-3 col-form-label" style="color: #44b89d;">Email</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="email" type="email" class="form-control" id="email" value="{{Auth::user()->email}}">
                         @error('email')
@@ -155,7 +155,7 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">CNIC</label>
+                      <label for="Email" class="col-md-4 col-lg-3 col-form-label" style="color: #44b89d;">CNIC</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="cnic_number" type="text" class="form-control" id="cnic_number" value="{{Auth::user()->cnic_number}}">
                         @error('cnic_number')
@@ -166,7 +166,7 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">City</label>
+                      <label for="Email" class="col-md-4 col-lg-3 col-form-label" style="color: #44b89d;">City</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="city" type="text" class="form-control" id="city" value="{{Auth::user()->city}}">
                         @error('city')

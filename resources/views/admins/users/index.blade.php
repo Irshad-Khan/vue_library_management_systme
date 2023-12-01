@@ -6,10 +6,10 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Users</h1>
+      <h1 style="color: #44b89d;">Users</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}" style="color: black;">Home</a></li>
         
         </ol>
       </nav>
@@ -30,7 +30,7 @@
             <div class="card-body">
 <div class="row">
     <div class="col-md-6">
-    <h5 class="card-title">Users List</h5>
+    <h5 class="card-title" style="color: #44b89d;">Users List</h5>
 </div>
 
 <div class="col-md-6 mt-3" style="text-align: right;">

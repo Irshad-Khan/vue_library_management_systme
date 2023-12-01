@@ -53,7 +53,7 @@ class AuthenticationController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 
     public function contact(){

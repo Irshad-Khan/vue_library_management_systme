@@ -6,10 +6,10 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Books</h1>
+      <h1 style="color: #44b89d;">Books</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}" style="color: black;">Home</a></li>
         
         </ol>
       </nav>
@@ -30,7 +30,7 @@
             <div class="card-body">
 <div class="row">
     <div class="col-md-6">
-    <h5 class="card-title">Books List</h5>
+    <h5 class="card-title" style="color: #44b89d;">Books List</h5>
 </div>
 @if(Auth::user()->role->name != 'User')
 
@@ -62,7 +62,7 @@
                     <td>{{$book->title}}</td>
                     <td>{{$book->auther}}</td>
                     <td>{{$book->isbn_number}}</td>
-                    <td>{{$book->publish_year}}</td>
+                    <td>{{ \Carbon\Carbon::parse($book->publish_year)->format('d/m/Y')}}</td>
                     <td>{{$book->type}}</td>
                     <td>{{$book->available_books}}</td>
                     <td>{{optional($book->category)->name}}</td>
@@ -78,7 +78,7 @@
                       <a href="{{route('admin.books.show',['id'=>$book->id])}}" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
                           @if(Auth::user()->role->name == 'User')
 
-                          |<a href="{{route('admin.books.show',['id'=>$book->id])}}" class="btn btn-info btn-sm"><i class="bi bi-book"></i></a>
+                          |<a href="{{route('admins.borrowed.Book',['id'=>$book->id])}}"  onclick="return confirm('Are You Sure?')" class="btn btn-info btn-sm"><i class="bi bi-book"></i></a>
                       @endif
 
                     @if(Auth::user()->role->name != 'User')

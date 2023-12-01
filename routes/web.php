@@ -7,28 +7,12 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\ContactUsController;
+use App\Http\Controllers\Admin\BrrowedBookController;
 use App\Http\Controllers\Authentication\AuthenticationController;
+use App\Http\Controllers\User\UserPanelController;
 
 
 
-
-
-
-
-
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 // Route for login
 Route::get('/login',[AuthenticationController::class, 'showLoginForm'])->name('login');
 Route::get('/register',[AuthenticationController::class, 'showRegistrationForm'])->name('authentication.register.form');
@@ -38,9 +22,13 @@ Route::get('/contact',[AuthenticationController::class, 'contact'])->name('authe
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [UserPanelController::class, 'index'])->name('home');
+Route::get('/about', [UserPanelController::class, 'about'])->name('about');
+Route::get('/contact', [UserPanelController::class, 'contact'])->name('contact');
+Route::post('/contact/store', [UserPanelController::class, 'contactStore'])->name('contact.store');
+
+
+
 
 
 Route::middleware(['auth'])->group(function(){
@@ -96,8 +84,11 @@ Route::post('/admin/books/update',[BookController::class, 'update'])->name('admi
 Route::get('/admin/contact',[ContactUsController::class, 'index'])->name('admins.contact.index');
 Route::get('/admin/contact/create',[ContactUsController::class, 'create'])->name('admins.contact.create');
 Route::post('/admin/contact/store',[ContactUsController::class, 'store'])->name('admins.contact.store');
-Route::get('/admin/contact/delete{id}',[ContactUsController::class, 'delete'])->name('admins.contact.delete');
-Route::get('/admin/contact/show{id}',[ContactUsController::class, 'show'])->name('admins.contact.show');
+Route::get('/admin/contact/delete/{id}',[ContactUsController::class, 'delete'])->name('admins.contact.delete');
+Route::get('/admin/contact/show/{id}',[ContactUsController::class, 'show'])->name('admins.contact.show');
+
+Route::get('/admin/borrowed/book/{id}',[BrrowedBookController::class, 'borrowedBook'])->name('admins.borrowed.Book');
+
 
 
 

@@ -6,10 +6,10 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Create Role</h1>
+      <h1 style="color: #44b89d;">Create Role</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route('admin.roles.index')}}">Roles</a></li>
+          <li class="breadcrumb-item"><a href="{{route('admin.roles.index')}}" style="color: black;">Roles</a></li>
         
         </ol>
       </nav>
@@ -21,7 +21,7 @@
 
         <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Role Detail</h5>
+              <h5 class="card-title" style="color: #44b89d;">Role Detail</h5>
 
               <form action="{{route('admin.roles.store')}}" method="POST"class="row g-3">
                 @csrf

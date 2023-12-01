@@ -6,10 +6,10 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Show Books</h1>
+      <h1 style="color: #44b89d;">Show Books</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route('admin.books.index')}}">Book</a></li>
+          <li class="breadcrumb-item"><a href="{{route('admin.books.index')}}" style="color: black;">Book</a></li>
         
         </ol>
       </nav>
@@ -21,14 +21,21 @@
 
         <div class="card">
             <div class="card-body">
+            @if(session('success'))
+        <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+        {{session('success')}}
+       <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+         @endif
             <div class="row">
     <div class="col-md-6">
-    <h5 class="card-title">Books Detail</h5>
+    <h5 class="card-title" style="color: #44b89d;">Books Detail</h5>
+
 </div>
 @if(Auth::user()->role->name == 'User')
 
 <div class="col-md-6 mt-3" style="text-align: right;">
-    <a href="{{route('admin.books.create')}}" class="btn btn-primary">Borrowed Book</a>
+    <a href="{{route('admins.borrowed.Book', ['id'=>$book->id])}}" onclick="return confirm('Are You Sure?')" class="btn btn-primary">Borrowed Book</a>
     </div>
     @endif
   </div>

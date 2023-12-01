@@ -5,7 +5,7 @@
 @section('content')
 
                    <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
+                    <h5 class="card-title text-center pb-0 fs-4" style="color: black";>Create an Account</h5>
                     <p class="text-center small">Enter your personal details to create account</p>
                   </div>
                   @if(session('success'))
@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                      <button class="btn btn-primary w-100" type="submit" style="background: #44b89d !important">Create Account</button>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0">Already have an account? <a href="{{route('login')}}">Log in</a></p>
