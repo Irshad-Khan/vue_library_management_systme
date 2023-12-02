@@ -106,6 +106,13 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link " href="{{route('admins.users.borrowed')}}"  style="color: black";>
+        <i class="bi bi-download"  style="color: black";></i>
+          <span>My Borrowed Books</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link " href="{{route('admins.users.profile')}}"  style="color:black";>
         <i class="bi bi-person"  style="color: black";></i>
           <span>Profile</span>

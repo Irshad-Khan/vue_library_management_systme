@@ -31,6 +31,7 @@ Route::post('/contact/store', [UserPanelController::class, 'contactStore'])->nam
 
 
 
+
 Route::middleware(['auth'])->group(function(){
     Route::get('/logout',[AuthenticationController::class, 'logout'])->name('logout');
 
@@ -67,6 +68,7 @@ Route::get('/admin/users/edit/{id}',[UserController::class, 'edit'])->name('admi
 Route::post('/admin/users/update',[UserController::class, 'update'])->name('admin.users.update');
 Route::get('/admin/users/profile',[UserController::class, 'profile'])->name('admins.users.profile');
 Route::post('/admin/users/profile/update',[UserController::class, 'profileUpdate'])->name('admins.users.profile.update');
+Route::get('/borrowed/books', [UserController::class, 'borrowedBooks'])->name('admins.users.borrowed');
 
 
 
