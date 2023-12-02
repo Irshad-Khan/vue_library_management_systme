@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index(){
-        $users = User::all();    // select * from Role table 
+        $users = User::all();    
         return view('admins.users.index',compact('users'));
          }
 
@@ -198,6 +198,10 @@ class UserController extends Controller
       $user->phone_number = $request->phone_number;
       $user->save();
       return redirect()->back()->with('success', 'Profile Updated Successfully!');
+  }
+
+  public function borrowedBooks(){
+   return view('admins.users.borrowed');
   }
 }
 
