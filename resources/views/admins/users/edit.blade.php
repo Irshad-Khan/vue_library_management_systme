@@ -123,8 +123,7 @@
 
                 <div class="col-12">
                   <label for="name" class="form-label">Address</label>
-                  <textarea cols="4" value="{{$user->address}}"   rows="5" name="address" class="form-control" id="address">
-                      </textarea>
+                  <textarea cols="4" rows="5" name="address" class="form-control" id="address">{{$user->address}}</textarea>
                       @error('address')
                   <span class="text-danger">{{$message}}</span>
                   @enderror

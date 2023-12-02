@@ -106,7 +106,7 @@
 
                 <div class="col-6">
                   <label for="role_id" class="form-label">Role</label>
-                  <select name="role_ id" name="role_id" id="role_id"  class="form-control">
+                  <select name="role_id" name="role_id" id="role_id"  class="form-control">
                     <option value="">Please Select</option>
                     @foreach($roles as $role)
                     <option value="{{$role->id}}">{{$role->name}}</option>
@@ -132,8 +132,7 @@
 
                 <div class="col-12">
                   <label for="name" class="form-label">Address</label>
-                  <textarea cols="4" rows="5" name="address" class="form-control" id="address">
-                      </textarea>
+                  <textarea cols="4" rows="5" name="address" class="form-control" id="address"></textarea>
                       @error('address')
                   <span class="text-danger">{{$message}}</span>
                   @enderror
