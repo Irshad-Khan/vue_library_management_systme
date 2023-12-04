@@ -96,7 +96,7 @@ Route::get('/admin/return/book/{id}',[BrrowedBookController::class, 'returnBook'
 
 Route::get('/checkout', [PaymentController::class, 'showCheckoutForm']);
 Route::post('/create-checkout-session', [PaymentController::class, 'createCheckoutSession']);
-Route::get('/success', [PaymentController::class, 'success'])->name('success');
+Route::get('/success/{id}', [PaymentController::class, 'success'])->name('success');
 Route::get('/cancel', [PaymentController::class, 'cancel'])->name('cancel');
 
 

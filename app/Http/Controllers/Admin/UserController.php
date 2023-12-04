@@ -212,7 +212,6 @@ class UserController extends Controller
    ->select('books.*', 'borrowed_books.*')
    ->where('borrowed_books.user_id', Auth::id())
    ->get();
-// dd($books);
    return view('admins.users.borrowed',compact('books'));
   }
 }

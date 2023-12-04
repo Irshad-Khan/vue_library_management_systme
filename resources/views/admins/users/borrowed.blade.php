@@ -52,6 +52,7 @@
                 </head>
                 <tbody>
                   @foreach ($books as $book)
+                   <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td><img src="{{ $book->book_picture_url }}" alt="" width="50"></td>
                     <td>{{ $book->title }}</td>
@@ -59,22 +60,24 @@
                     <td>{{ $book->isbn_number }}</td>
                     <td>{{ $book->publish_year }}</td>
                     <td>{{ $book->borrow_date}}</td>
-
-                    @php
-                        // Assuming $book->borrow_date is a string in the 'Y-m-d' format
-                        $borrowDate = \Carbon\Carbon::parse($book->borrow_date);
-                        $dueDate = $borrowDate->addDays(15);
-
-                        // Check if the due date is in the past
-                        $isOverdue = now()->greaterThan($dueDate);
-                    @endphp
-
-                    @if ($isOverdue)
-                      <td><button data-fine="20" class="btn btn-info btn-sm checkout-button" title="Return Book">PAY FINE (20)</button></td>
-                    @else
-                        <td><p>No fine</p></td>
-                    @endif
+                    <td>
+                      @php
+                      // Assuming $book->borrow_date is a string in the 'Y-m-d' format
+                      $borrowDate = \Carbon\Carbon::parse($book->borrow_date);
+                      $dueDate = $borrowDate->addDays(15);
+          
+                      // Check if the due date is in the past
+                      $isOverdue = now()->greaterThan($dueDate);
+                  @endphp
+          
+                  @if ($isOverdue)
+                  <button class="btn btn-info checkout-button" data-fine="20" data-book_id="{{ $book->id }}">Pay Now</button>
+                  @else
+                      <p>No fine</p>
+                  @endif
+                    </td>
                     <td><a href="{{ route('admins.return.Book',['id'=>$book->id]) }}" onclick="return confirm('Are you sure?')" class="btn btn-primary btn-sm" title="Return Book"><i class="bi bi-upload"></i></a></td>
+                   </tr>
                   @endforeach
                 </tbody>
               </table>
@@ -96,7 +99,8 @@
 
         document.querySelector('.checkout-button').addEventListener('click', function () {
           var amount = this.dataset.fine;
-          axios.post('/create-checkout-session', { amount: amount })
+          var bookId = this.dataset.book_id;
+          axios.post('/create-checkout-session', { amount: amount, bookId: bookId })
               .then(function (response) {
                   return stripe.redirectToCheckout({ sessionId: response.data.id });
               })
