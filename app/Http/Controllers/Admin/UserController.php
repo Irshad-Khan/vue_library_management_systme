@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book;
+use App\Models\BorrowedBook;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +29,7 @@ class UserController extends Controller
 
          public function store(Request $request){
             if(Auth::user()->role->name == 'Admin'){
-            $request->validate(rules:[
+            $request->validate([
                'user_name'=>['required'],
                'first_name'=>['required'],
                'last_name'=>['required'],
@@ -89,7 +91,11 @@ class UserController extends Controller
 
        public function show($id){
         $user = User::findOrFail($id);
-        return view('admins.users.show',compact('user'));
+        
+        $myBookIds = BorrowedBook::where('user_id',$user->id)->pluck('book_id');
+        $books = Book::whereIn('id',$myBookIds)->get();
+
+        return view('admins.users.show',compact('user','books'));
      }
 
      public function edit($id){
@@ -101,7 +107,7 @@ class UserController extends Controller
 
      public function update(Request $request){
       if(Auth::user()->role->name == 'Admin'){
-            $request->validate(rules:[               
+            $request->validate([               
             'user_name'=>['required'],
             'first_name'=>['required'],
             'last_name'=>['required'],
@@ -165,7 +171,7 @@ class UserController extends Controller
   }
 
   public function profileUpdate(Request $request){
-   $request->validate(rules:[
+   $request->validate([
       'user_name'=>['required'],
       'first_name'=>['required'],
       'last_name'=>['required'],
@@ -201,7 +207,13 @@ class UserController extends Controller
   }
 
   public function borrowedBooks(){
-   return view('admins.users.borrowed');
+
+   $books = BorrowedBook::join('books', 'borrowed_books.book_id', '=', 'books.id')
+   ->select('books.*', 'borrowed_books.*')
+   ->where('borrowed_books.user_id', Auth::id())
+   ->get();
+// dd($books);
+   return view('admins.users.borrowed',compact('books'));
   }
 }
 

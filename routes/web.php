@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\BrrowedBookController;
 use App\Http\Controllers\Authentication\AuthenticationController;
 use App\Http\Controllers\User\UserPanelController;
+use App\Http\Controllers\PaymentController;
 
 
 
@@ -90,8 +91,13 @@ Route::get('/admin/contact/delete/{id}',[ContactUsController::class, 'delete'])-
 Route::get('/admin/contact/show/{id}',[ContactUsController::class, 'show'])->name('admins.contact.show');
 
 Route::get('/admin/borrowed/book/{id}',[BrrowedBookController::class, 'borrowedBook'])->name('admins.borrowed.Book');
+Route::get('/admin/return/book/{id}',[BrrowedBookController::class, 'returnBook'])->name('admins.return.Book');
 
 
+Route::get('/checkout', [PaymentController::class, 'showCheckoutForm']);
+Route::post('/create-checkout-session', [PaymentController::class, 'createCheckoutSession']);
+Route::get('/success', [PaymentController::class, 'success'])->name('success');
+Route::get('/cancel', [PaymentController::class, 'cancel'])->name('cancel');
 
 
 });

@@ -31,6 +31,7 @@
 <div class="row">
     <div class="col-md-6">
     <h5 class="card-title" style="color: #44b89d;">Borrowed Books List</h5>
+    {{--  <button id="checkout-button">Pay Now</button>  --}}
 </div>
 
 </div>
@@ -40,22 +41,43 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Image</th>
-
-                    <th scope="col">Tital</th>
+                    <th scope="col">Title</th>
                     <th scope="col">Auther</th>
                     <th scope="col">ISBN</th>
                     <th scope="col">Publish Year</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Category</th>
-                    <td>
-                      <a href="" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>|
-                      <a href="" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>|
-                      <a href="" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')"><i class="bi bi-trash"></i></a>
-
-                    </td>
+                    <th scope="col">Borrowed Date</th>
+                    <th scope="col">Fine</th>
+                    <th scope="col">Action</th>
                   </tr>
+                </head>
+                <tbody>
+                  @foreach ($books as $book)
+                    <td>{{ $loop->iteration }}</td>
+                    <td><img src="{{ $book->book_picture_url }}" alt="" width="50"></td>
+                    <td>{{ $book->title }}</td>
+                    <td>{{ $book->auther }}</td>
+                    <td>{{ $book->isbn_number }}</td>
+                    <td>{{ $book->publish_year }}</td>
+                    <td>{{ $book->borrow_date}}</td>
+
+                    @php
+                        // Assuming $book->borrow_date is a string in the 'Y-m-d' format
+                        $borrowDate = \Carbon\Carbon::parse($book->borrow_date);
+                        $dueDate = $borrowDate->addDays(15);
+
+                        // Check if the due date is in the past
+                        $isOverdue = now()->greaterThan($dueDate);
+                    @endphp
+
+                    @if ($isOverdue)
+                      <td><button data-fine="20" class="btn btn-info btn-sm checkout-button" title="Return Book">PAY FINE (20)</button></td>
+                    @else
+                        <td><p>No fine</p></td>
+                    @endif
+                    <td><a href="{{ route('admins.return.Book',['id'=>$book->id]) }}" onclick="return confirm('Are you sure?')" class="btn btn-primary btn-sm" title="Return Book"><i class="bi bi-upload"></i></a></td>
+                  @endforeach
                 </tbody>
-              </table>
+              </table>
 
             </div>
           </div>
@@ -64,4 +86,28 @@
 
             
 
+@endsection
+
+@section('script')
+<script src="https://js.stripe.com/v3/"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        var stripe = Stripe('pk_test_51OJTpGSIjEcZrUKIrOpTAES9F5gIyqgGVzcJK4tgv0sOEMI0rnwW2eq7z5ErLK8rBW821kZdRCqCWfcKMgRewW8R00eMtyfd0t');
+
+        document.querySelector('.checkout-button').addEventListener('click', function () {
+          var amount = this.dataset.fine;
+          axios.post('/create-checkout-session', { amount: amount })
+              .then(function (response) {
+                  return stripe.redirectToCheckout({ sessionId: response.data.id });
+              })
+              .then(function (result) {
+                  if (result.error) {
+                      alert(result.error.message);
+                  }
+              })
+              .catch(function (error) {
+                  console.error('Error:', error);
+              });
+      });
+    </script>
 @endsection

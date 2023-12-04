@@ -28,7 +28,7 @@ class BookController extends Controller
         if(Auth::user()->role->name =="User"){
             abort(403, "You have no permission to access this module");
         }
-        $request->validate(rules:[
+        $request->validate([
             'title'=>['required', 'unique:books,title'],
             'auther'=>['required'],
             'isbn_number'=>['required'],
@@ -92,7 +92,7 @@ class BookController extends Controller
         if(Auth::user()->role->name =="User"){
             abort(403, "You have no permission to access this module");
         }
-        $request->validate(rules:[
+        $request->validate([
             'title'=>['required'],
             'auther'=>['required'],
             'isbn_number'=>['required'],

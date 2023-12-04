@@ -37,4 +37,14 @@ class BrrowedBookController extends Controller
         return redirect()->back()->with('success', 'Book has been assign to you. Please collect book from library');
 
    }
+
+   public function returnBook($id)
+   {
+      $book = Book::findOrFail($id);
+      $book->available_books = $book->available_books + 1;
+      $book->update();
+
+      BorrowedBook::where('user_id',Auth::user()->id)->where('book_id',$book->id)->delete();
+      return redirect()->back()->with('success','Thanks for reurn');
+   }
 }

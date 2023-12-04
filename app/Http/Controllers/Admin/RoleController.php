@@ -38,7 +38,7 @@ class RoleController extends Controller
             if(Auth::user()->role->name!="Admin"){
                 abort(403, "You have no permission to access this module");
             }
-            $request->validate(rules:[
+            $request->validate([
                 'name'=> ['required'],
                 'status'=>['required']
              ]);
@@ -63,7 +63,7 @@ class RoleController extends Controller
             if(Auth::user()->role->name!="Admin"){
                 abort(403, "You have no permission to access this module");
             }
-             $request->validate(rules:[
+             $request->validate([
                 'name'=> ['required', 'unique:roles,name'],
                 'status'=>['required']
              ]);

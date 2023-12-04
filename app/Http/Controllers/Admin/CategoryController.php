@@ -38,7 +38,7 @@ class CategoryController extends Controller
         if(Auth::user()->role->name!="Admin"){
             abort(403, "You have no permission to access this module");
         }
-        $request->validate(rules:[
+        $request->validate([
             'name'=> ['required'],
             'status'=>['required']
         ]);
@@ -65,7 +65,7 @@ class CategoryController extends Controller
         if(Auth::user()->role->name!="Admin"){
             abort(403, "You have no permission to access this module");
         }
-        $request->validate(rules:[
+        $request->validate([
             'name'=> ['required', 'unique:categories,name'],
             'status'=>['required']
         ]);

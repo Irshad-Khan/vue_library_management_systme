@@ -23,7 +23,7 @@ class UserPanelController extends Controller
     }
 
     public function contactStore(Request $request){
-        $request->validate(rules:[
+        $request->validate([
             'name'=>['required'],
             'contact_number'=>['required'],
             'subject'=>['required'],

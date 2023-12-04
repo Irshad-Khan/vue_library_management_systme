@@ -111,7 +111,50 @@
           </div>
     </section>
 
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
 
+          <div class="card">
+            <div class="card-body">
+            <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                <h5 class="card-title" style="color: #44b89d;">Borrowed Books List</h5>
+            </div>
+
+            </div>
+              <!-- Table with stripped rows -->
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Auther</th>
+                    <th scope="col">ISBN</th>
+                    <th scope="col">Publish Year</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </head>
+                <tbody>
+                  @foreach ($books as $book)
+                    <td>{{ $loop->iteration }}</td>
+                    <td><img src="{{ $book->book_picture_url }}" alt="" width="50"></td>
+                    <td>{{ $book->title }}</td>
+                    <td>{{ $book->auther }}</td>
+                    <td>{{ $book->isbn_number }}</td>
+                    <td>{{ $book->publish_year }}</td>
+                    <td>{{ optional($book->category)->name}}</td>
+                    <td><a href="{{ route('admins.return.Book',['id'=>$book->id]) }}" onclick="return confirm('Are you sure?')" class="btn btn-primary btn-sm" title="Return Book"><i class="bi bi-upload"></i></a></td>
+                  @endforeach
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+    </section>
             
 
 @endsection
